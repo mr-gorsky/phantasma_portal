@@ -352,7 +352,7 @@ Za podršku: support@phantasma.hr"""
             },
             "Maritime Vision Test": {
                 "url": "https://maritime-vision-test.streamlit.app/",
-                "icon": "https://i.postimg.cc/zDPXJKpd/Screenshot-2025-11-05-125128-removebg-preview.png",
+                "icon": "https://i.postimg.cc/DyjrHD01/Screenshot-2025-11-05-125128-removebg-preview.png",
                 "description": "Specjalizirani testovi za pomorce"
             },
             "Near Vision Examiner": {
@@ -362,11 +362,17 @@ Za podršku: support@phantasma.hr"""
             }
         }
         
+        # Preloadaj sve ikone odjednom
+        with st.spinner("Učitavanje aplikacija..."):
+            app_icons = {}
+            for app_name, app_data in apps.items():
+                app_icons[app_name] = load_image_from_url(app_data["icon"], 80)
+        
         # Koristimo 2 kolone za prikaz 4 aplikacija (2x2)
         cols = st.columns(2)
         for idx, (app_name, app_data) in enumerate(apps.items()):
             with cols[idx % 2]:
-                app_icon = load_image_from_url(app_data["icon"], 80)
+                app_icon = app_icons[app_name]
                 st.markdown(f"""
                 <div class="app-card">
                     <div style="text-align: center; padding: 1rem;">
@@ -429,7 +435,7 @@ def user_dashboard():
         },
         "Maritime Vision Test": {
             "url": "https://maritime-vision-test.streamlit.app/",
-            "icon": "https://i.postimg.cc/zDPXJKpd/Screenshot-2025-11-05-125128-removebg-preview.png",
+            "icon": "https://i.postimg.cc/DyjrHD01/Screenshot-2025-11-05-125128-removebg-preview.png",
             "description": "Specjalizirani testovi za pomorce"
         },
         "Near Vision Examiner": {
@@ -439,11 +445,17 @@ def user_dashboard():
         }
     }
     
+    # Preloadaj sve ikone odjednom
+    with st.spinner("Učitavanje aplikacija..."):
+        app_icons = {}
+        for app_name, app_data in apps.items():
+            app_icons[app_name] = load_image_from_url(app_data["icon"], 80)
+    
     # Koristimo 2 kolone za prikaz 4 aplikacija (2x2)
     cols = st.columns(2)
     for idx, (app_name, app_data) in enumerate(apps.items()):
         with cols[idx % 2]:
-            app_icon = load_image_from_url(app_data["icon"], 80)
+            app_icon = app_icons[app_name]
             st.markdown(f"""
             <div class="app-card">
                 <div style="text-align: center; padding: 1rem;">
@@ -507,3 +519,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
