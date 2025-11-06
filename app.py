@@ -342,49 +342,52 @@ Za podršku: support@phantasma.hr"""
         apps = {
             "Tear Film Analyzer": {
                 "url": "https://tear-film-analyzer.streamlit.app/",
-                "icon": "https://i.postimg.cc/hjQgv32j/Screenshot-2025-11-05-125227-removebg-preview.png"
+                "icon": "https://i.postimg.cc/hjQgv32j/Screenshot-2025-11-05-125227-removebg-preview.png",
+                "description": "Analiza suhoće oka i kvalitete suznog filma"
             },
             "Vision Quest": {
                 "url": "https://visionquest.streamlit.app/",
-                "icon": "https://i.postimg.cc/4xHKCBgK/Screenshot-2025-11-05-125214-removebg-preview.png"
+                "icon": "https://i.postimg.cc/4xHKCBgK/Screenshot-2025-11-05-125214-removebg-preview.png",
+                "description": "Kompletna dijagnostika vida"
             },
             "Maritime Vision Test": {
                 "url": "https://maritime-vision-test.streamlit.app/",
-                "icon": "https://i.postimg.cc/zDPXJKpd/Screenshot-2025-11-05-125128-removebg-preview.png"
+                "icon": "https://i.postimg.cc/zDPXJKpd/Screenshot-2025-11-05-125128-removebg-preview.png",
+                "description": "Specjalizirani testovi za pomorce"
             },
             "Near Vision Examiner": {
                 "url": "https://nearvisionexaminer.streamlit.app/",
-                "icon": "https://i.postimg.cc/hPdgcwfY/Screenshot-2025-11-05-125200-removebg-preview.png"
+                "icon": "https://i.postimg.cc/hPdgcwfY/Screenshot-2025-11-05-125200-removebg-preview.png",
+                "description": "Dijagnostika bliskog vida"
             }
         }
         
-        for app_name, app_data in apps.items():
-            app_icon = load_image_from_url(app_data["icon"], 60)
-            st.markdown(f"""
-            <div class="app-card">
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <div style="flex-shrink: 0;">
-            """, unsafe_allow_html=True)
-            
-            if app_icon:
-                st.image(app_icon, width=60)
-            else:
-                st.markdown("""
-                        <div style="width: 60px; height: 60px; background: #e8eaf6; display: flex; align-items: center; justify-content: center;">
+        # Koristimo 2 kolone za prikaz 4 aplikacija (2x2)
+        cols = st.columns(2)
+        for idx, (app_name, app_data) in enumerate(apps.items()):
+            with cols[idx % 2]:
+                app_icon = load_image_from_url(app_data["icon"], 80)
+                st.markdown(f"""
+                <div class="app-card">
+                    <div style="text-align: center; padding: 1rem;">
+                """, unsafe_allow_html=True)
+                
+                if app_icon:
+                    st.image(app_icon, width=80)
+                else:
+                    st.markdown("""
+                        <div style="width: 80px; height: 80px; background: #e8eaf6; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem auto; border: 1px solid #c5cae9;">
                             👁️
                         </div>
-                """, unsafe_allow_html=True)
-            
-            st.markdown(f"""
-                    </div>
-                    <div style="flex-grow: 1;">
-                        <h4 style='margin: 0 0 0.5rem 0; color: #1a237e;'>{app_name}</h4>
-                        <p style='margin: 0 0 1rem 0; color: #666; font-size: 0.9rem;'>Napredna medicinska aplikacija</p>
-                        <a href='{app_data["url"]}' target='_blank' style='background: #1a237e; color: white; padding: 0.5rem 1.5rem; text-decoration: none; border: 1px solid #1a237e; font-weight: 500; display: inline-block;'>Otvori Aplikaciju →</a>
+                    """, unsafe_allow_html=True)
+                
+                st.markdown(f"""
+                        <h4 style='margin: 0.5rem 0 0.5rem 0; color: #1a237e; font-size: 1.1rem;'>{app_name}</h4>
+                        <p style='margin: 0 0 1rem 0; color: #666; font-size: 0.85rem;'>{app_data["description"]}</p>
+                        <a href='{app_data["url"]}' target='_blank' style='background: #1a237e; color: white; padding: 0.6rem 1.2rem; text-decoration: none; border: 1px solid #1a237e; font-weight: 500; display: inline-block; width: 100%; text-align: center;'>Otvori Aplikaciju</a>
                     </div>
                 </div>
-            </div>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
 
 def user_dashboard():
     user_manager = UserManager()
@@ -416,42 +419,48 @@ def user_dashboard():
     apps = {
         "Tear Film Analyzer": {
             "url": "https://tear-film-analyzer.streamlit.app/",
-            "icon": "https://i.postimg.cc/hjQgv32j/Screenshot-2025-11-05-125227-removebg-preview.png"
+            "icon": "https://i.postimg.cc/hjQgv32j/Screenshot-2025-11-05-125227-removebg-preview.png",
+            "description": "Analiza suhoće oka i kvalitete suznog filma"
         },
         "Vision Quest": {
             "url": "https://visionquest.streamlit.app/",
-            "icon": "https://i.postimg.cc/4xHKCBgK/Screenshot-2025-11-05-125214-removebg-preview.png"
+            "icon": "https://i.postimg.cc/4xHKCBgK/Screenshot-2025-11-05-125214-removebg-preview.png",
+            "description": "Kompletna dijagnostika vida"
         },
         "Maritime Vision Test": {
             "url": "https://maritime-vision-test.streamlit.app/",
-            "icon": "https://i.postimg.cc/zDPXJKpd/Screenshot-2025-11-05-125128-removebg-preview.png"
+            "icon": "https://i.postimg.cc/zDPXJKpd/Screenshot-2025-11-05-125128-removebg-preview.png",
+            "description": "Specjalizirani testovi za pomorce"
         },
         "Near Vision Examiner": {
             "url": "https://nearvisionexaminer.streamlit.app/",
-            "icon": "https://i.postimg.cc/hPdgcwfY/Screenshot-2025-11-05-125200-removebg-preview.png"
+            "icon": "https://i.postimg.cc/hPdgcwfY/Screenshot-2025-11-05-125200-removebg-preview.png",
+            "description": "Dijagnostika bliskog vida"
         }
     }
     
+    # Koristimo 2 kolone za prikaz 4 aplikacija (2x2)
     cols = st.columns(2)
     for idx, (app_name, app_data) in enumerate(apps.items()):
         with cols[idx % 2]:
-            app_icon = load_image_from_url(app_data["icon"], 50)
+            app_icon = load_image_from_url(app_data["icon"], 80)
             st.markdown(f"""
             <div class="app-card">
-                <div style="text-align: center;">
+                <div style="text-align: center; padding: 1rem;">
             """, unsafe_allow_html=True)
             
             if app_icon:
-                st.image(app_icon, width=50)
+                st.image(app_icon, width=80)
             else:
                 st.markdown("""
-                    <div style="width: 50px; height: 50px; background: #e8eaf6; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem auto;">
+                    <div style="width: 80px; height: 80px; background: #e8eaf6; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem auto; border: 1px solid #c5cae9;">
                         👁️
                     </div>
                 """, unsafe_allow_html=True)
             
             st.markdown(f"""
-                    <h4 style='margin: 0.5rem 0 1rem 0; color: #1a237e; font-size: 1rem;'>{app_name}</h4>
+                    <h4 style='margin: 0.5rem 0 0.5rem 0; color: #1a237e; font-size: 1.1rem;'>{app_name}</h4>
+                    <p style='margin: 0 0 1rem 0; color: #666; font-size: 0.85rem;'>{app_data["description"]}</p>
                     <a href='{app_data["url"]}' target='_blank' style='background: #1a237e; color: white; padding: 0.6rem 1.2rem; text-decoration: none; border: 1px solid #1a237e; font-weight: 500; display: inline-block; width: 100%; text-align: center;'>Pokreni Aplikaciju</a>
                 </div>
             </div>
@@ -496,4 +505,5 @@ def main():
             user_dashboard()
 
 if __name__ == "__main__":
+
     main()
