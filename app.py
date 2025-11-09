@@ -294,7 +294,7 @@ def admin_dashboard():
             "Vision Quest": "Kompletna dijagnostika vida",
             "Maritime Vision Test": "Specjalizirani testovi za pomorce",
             "Near Vision Examiner": "Dijagnostika bliskog vida",
-            "OphtalCAM EMR": "Elektronički zdravstveni kartoni za oftalmologiju"
+            "OphtalCAM EMR": "Elektronički zdravstveni karton"
         }
         
         selected_apps = []
@@ -606,4 +606,5 @@ def main():
             user_dashboard()
 
 if __name__ == "__main__":
+
     main()
